@@ -128,14 +128,14 @@ const ventures = [
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-ink text-white">
+    <main className="relative min-h-screen overflow-hidden bg-transparent text-white">
       <ScrollAnimations />
       <MouseGlow />
       <AshClouds />
       <AuroraBackground />
       <Header />
 
-      <section id="hero" className="relative min-h-screen overflow-hidden pt-24">
+      <section id="hero" className="relative min-h-screen overflow-hidden pt-24 before:absolute before:inset-0 before:bg-[linear-gradient(180deg,rgba(5,8,14,0.56),rgba(5,8,14,0.18)_54%,rgba(255,255,255,0.05))] before:content-['']">
         <div className="section-shell grid min-h-[calc(100vh-6rem)] items-center gap-12 py-16 lg:grid-cols-[1.05fr_0.95fr]">
           <MotionDiv
             className="relative z-10"
@@ -173,7 +173,7 @@ export default function Home() {
             </div>
           </MotionDiv>
 
-          <div className="relative h-[430px] min-h-[430px] overflow-hidden rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_50%_35%,rgba(110,231,255,0.20),transparent_20rem),linear-gradient(135deg,rgba(255,255,255,0.04),rgba(255,255,255,0.01))] shadow-glass lg:h-[590px]">
+          <div className="relative h-[430px] min-h-[430px] overflow-hidden rounded-[2rem] border border-white/20 bg-[radial-gradient(circle_at_50%_35%,rgba(255,255,255,0.24),transparent_16rem),radial-gradient(circle_at_64%_80%,rgba(110,231,255,0.16),transparent_18rem),linear-gradient(135deg,rgba(255,255,255,0.10),rgba(255,255,255,0.02))] shadow-glass lg:h-[590px]">
             <HeroOrbLoader />
             <OrbitFace />
             <FloatingCard className="left-0 top-12" title="AI Pipeline" value="96%" icon={<Bot />} />
@@ -385,7 +385,7 @@ export default function Home() {
 
 function Header() {
   return (
-    <header className="fixed left-0 right-0 top-0 z-40 border-b border-white/10 bg-ink/35 backdrop-blur-2xl">
+    <header className="fixed left-0 right-0 top-0 z-40 border-b border-white/15 bg-[#071321]/45 backdrop-blur-2xl">
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-10">
         <a href="#hero" className="text-sm font-black tracking-[0.22em] text-white">
           AKASH
@@ -414,9 +414,9 @@ function AuroraBackground() {
   return (
     <div aria-hidden="true" className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
       <div className="absolute left-[-14%] top-[-12%] h-[38rem] w-[38rem] animate-aurora rounded-full bg-cyan/20 blur-3xl" />
-      <div className="absolute right-[-12%] top-[4%] h-[34rem] w-[34rem] animate-aurora rounded-full bg-violet/20 blur-3xl [animation-delay:2s]" />
-      <div className="absolute bottom-[-20%] left-[22%] h-[36rem] w-[42rem] animate-aurora rounded-full bg-mint/10 blur-3xl [animation-delay:4s]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent,rgba(5,6,10,0.92)_76%)]" />
+      <div className="absolute right-[-12%] top-[4%] h-[34rem] w-[34rem] animate-aurora rounded-full bg-sky-200/20 blur-3xl [animation-delay:2s]" />
+      <div className="absolute bottom-[-18%] left-[22%] h-[36rem] w-[42rem] animate-aurora rounded-full bg-white/16 blur-3xl [animation-delay:4s]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,8,14,0.5),transparent_42%,rgba(217,238,249,0.16)_100%)]" />
     </div>
   );
 }
