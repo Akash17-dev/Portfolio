@@ -1,4 +1,3 @@
-<img width="2906" height="1678" alt="image" src="https://github.com/user-attachments/assets/a3ad9d64-f550-4bb7-b834-233f9329274c" /># Akash Aakula Portfolio
 
 A premium personal portfolio built with Next.js, React, Tailwind CSS, Framer Motion, Three.js, and custom WebGL shader effects. The site presents Akash Aakula as an AI/ML engineer, data scientist, full-stack developer, and DevOps-focused builder through a polished single-page experience.
 
@@ -24,9 +23,10 @@ A premium personal portfolio built with Next.js, React, Tailwind CSS, Framer Mot
 
 ##Screenshots of Loading Page and Home Page
 <img width="2919" height="1688" alt="image" src="https://github.com/user-attachments/assets/7f770c3a-893f-45b1-b471-12ba342a29e3" />
-<img width="2906" height="1678" alt="image" src="https://github.com/user-attachments/assets/e6038d16-e725-4a7f-832c-e130cacf3734" />
+<img width="2907" height="1675" alt="image" src="https://github.com/user-attachments/assets/f0ca0f4a-d668-44ba-b8b0-52bec3f2a20a" />
 
-##Available at: "https://portfolio-pi-livid-lni8rjwhws.vercel.app/"
+##Available at: "https://portfolio-pi-livid-lni8rjwhws.vercel.app"
+
 ## Project Structure
 
 ```txt
