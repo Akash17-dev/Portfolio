@@ -1,6 +1,5 @@
 import {
   ArrowUpRight,
-  BarChart3,
   Bot,
   Boxes,
   BrainCircuit,
@@ -8,19 +7,14 @@ import {
   Code2,
   Database,
   Download,
-  FolderKanban,
   Github,
-  HomeIcon,
   Linkedin,
   Mail,
   MessageCircle,
-  Phone,
   Rocket,
-  Send,
   ServerCog,
   Sparkles,
   Terminal,
-  UserRound,
   ShieldCheck,
 } from "lucide-react";
 import { AnimatedCounter } from "@/components/animated-counter";
@@ -38,6 +32,7 @@ import { HeroOrbLoader } from "@/components/hero-orb-loader";
 import { OrbitFace } from "@/components/orbit-face";
 import { AshClouds } from "@/components/ash-clouds";
 import { ShaderBackdrop } from "@/components/shader-backdrop";
+import { SiteNavigation } from "@/components/site-navigation";
 
 const roles = [
   "AI/ML Engineer",
@@ -222,8 +217,7 @@ export default function Home() {
       <AshClouds />
       <AuroraBackground />
       <ShaderBackdrop className="pointer-events-none fixed inset-0 z-0 h-screen w-screen mix-blend-screen opacity-45" />
-      <Header />
-      <MobileBottomNav />
+      <SiteNavigation />
 
       <section id="hero" className="relative min-h-screen overflow-hidden pt-24">
         <div className="section-shell relative z-10 grid min-h-[calc(100vh-6rem)] items-center gap-12 py-16 lg:grid-cols-[1.05fr_0.95fr]">
@@ -485,63 +479,6 @@ export default function Home() {
         <a href="#hero" className="transition hover:text-cyan">Back to top</a>
       </footer>
     </main>
-  );
-}
-
-function MobileBottomNav() {
-  const items = [
-    [HomeIcon, "Home", "#hero"],
-    [UserRound, "About", "#about"],
-    [FolderKanban, "Projects", "#projects"],
-    [BarChart3, "GitHub", "#github"],
-    [Phone, "Contact", "#contact"],
-  ];
-
-  return (
-    <nav
-      aria-label="Mobile section navigation"
-      className="fixed inset-x-3 bottom-3 z-50 rounded-full border border-white/15 bg-ink/75 px-2 py-2 shadow-glass backdrop-blur-2xl md:hidden"
-    >
-      <div className="grid grid-cols-5 gap-1">
-        {items.map(([Icon, label, href]) => (
-          <a
-            key={String(label)}
-            href={String(href)}
-            aria-label={String(label)}
-            className="grid h-12 place-items-center rounded-full text-white/[0.62] transition hover:bg-white/[0.08] hover:text-cyan focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan"
-          >
-            <Icon className="h-5 w-5" />
-          </a>
-        ))}
-      </div>
-    </nav>
-  );
-}
-
-function Header() {
-  return (
-    <header className="fixed left-0 right-0 top-0 z-40 border-b border-white/10 bg-ink/35 backdrop-blur-2xl">
-      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-10">
-        <a href="#hero" className="text-sm font-black tracking-[0.22em] text-white">
-          AKASH
-        </a>
-        <div className="hidden items-center gap-1 rounded-full border border-white/10 bg-white/[0.04] p-1 md:flex">
-          {["About", "Skills", "Projects", "GitHub", "Contact"].map((item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className="rounded-full px-4 py-2 text-sm text-white/[0.62] transition hover:bg-white/[0.08] hover:text-white"
-            >
-              {item}
-            </a>
-          ))}
-        </div>
-        <a href="#contact" className="liquid-button min-h-10 px-4 py-2">
-          <Send className="h-4 w-4" />
-          <span className="hidden sm:inline">Discuss a Project</span>
-        </a>
-      </nav>
-    </header>
   );
 }
 
