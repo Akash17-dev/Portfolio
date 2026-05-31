@@ -37,11 +37,6 @@ Available at [https://portfolio-pi-livid-lni8rjwhws.vercel.app/](https://portfol
 - **Icons:** Lucide React
 - **Data:** Next.js route handlers for GitHub profile and contribution data
 
-##Screenshots of Loading Page and Home Page
-<img width="2919" height="1688" alt="image" src="https://github.com/user-attachments/assets/7f770c3a-893f-45b1-b471-12ba342a29e3" />
-<img width="2907" height="1675" alt="image" src="https://github.com/user-attachments/assets/f0ca0f4a-d668-44ba-b8b0-52bec3f2a20a" />
-
-##Available at: "https://portfolio-pi-livid-lni8rjwhws.vercel.app"
 
 ## Project Structure
 
