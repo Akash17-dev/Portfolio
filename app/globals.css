@@ -159,7 +159,7 @@ body::after {
 
 @layer components {
   .section-shell {
-    @apply relative mx-auto w-full max-w-7xl px-5 py-24 sm:px-8 lg:px-10;
+    @apply relative z-10 mx-auto w-full max-w-7xl px-5 py-24 sm:px-8 lg:px-10;
   }
 
   .glass-panel {
@@ -185,6 +185,30 @@ body::after {
     background: linear-gradient(120deg, rgba(255, 255, 255, 0.38), transparent 18%, transparent 68%, rgba(110, 231, 255, 0.18));
     mask-image: linear-gradient(#000, transparent 58%);
     opacity: 0.82;
+  }
+
+  .calm-panel {
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.018)),
+      rgba(9, 13, 18, 0.5);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.14),
+      0 18px 46px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(9px) saturate(115%);
+    -webkit-backdrop-filter: blur(9px) saturate(115%);
+  }
+
+  .calm-panel::before {
+    position: absolute;
+    inset: 1px;
+    pointer-events: none;
+    content: "";
+    border-radius: inherit;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.18), transparent 24%, transparent 72%, rgba(110, 231, 255, 0.08));
+    mask-image: linear-gradient(#000, transparent 58%);
+    opacity: 0.56;
   }
 
   .pill {

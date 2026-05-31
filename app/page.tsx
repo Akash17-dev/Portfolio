@@ -1,5 +1,6 @@
 import {
   ArrowUpRight,
+  BarChart3,
   Bot,
   Boxes,
   BrainCircuit,
@@ -7,15 +8,20 @@ import {
   Code2,
   Database,
   Download,
+  FolderKanban,
   Github,
+  HomeIcon,
   Linkedin,
   Mail,
+  MessageCircle,
+  Phone,
   Rocket,
   Send,
   ServerCog,
   Sparkles,
   Terminal,
-  Twitter,
+  UserRound,
+  ShieldCheck,
 } from "lucide-react";
 import { AnimatedCounter } from "@/components/animated-counter";
 import { ContactForm } from "@/components/contact-form";
@@ -25,15 +31,19 @@ import { MouseGlow } from "@/components/mouse-glow";
 import { ScrollAnimations } from "@/components/scroll-animations";
 import { SectionHeading } from "@/components/section-heading";
 import { TiltCard } from "@/components/tilt-card";
+import { ProjectShowcase, type Project } from "@/components/project-showcase";
+import { GitHubDashboard } from "@/components/github-dashboard";
 import { RoleSwitcher } from "@/components/role-switcher";
 import { HeroOrbLoader } from "@/components/hero-orb-loader";
 import { OrbitFace } from "@/components/orbit-face";
 import { AshClouds } from "@/components/ash-clouds";
+import { ShaderBackdrop } from "@/components/shader-backdrop";
 
 const roles = [
   "AI/ML Engineer",
   "Data Scientist",
   "Full Stack Developer",
+  "Cybersecurity Enthusiast",
   "Linux & DevOps Enthusiast",
 ];
 
@@ -44,45 +54,105 @@ const stats = [
   ["Startup Ideas Developed", 9, "+"],
 ];
 
+const credibilitySignals = ["AI/ML", "Full-Stack", "Security", "Open Source", "Product UX"];
+
+const aboutDetails = [
+  {
+    title: "Current Focus",
+    description: "Deep learning, secure full-stack architecture, network security, and production-ready AI features.",
+  },
+  {
+    title: "Build Style",
+    description: "Clean interfaces, practical automation, strong data handling, and products that solve real local problems.",
+  },
+  {
+    title: "Learning Direction",
+    description: "AI-driven threat detection, DevSecOps fundamentals, scalable backend systems, and polished frontend UX.",
+  },
+];
+
 const skills = [
   {
-    title: "AI & ML",
+    title: "AI & Machine Learning",
     icon: BrainCircuit,
     tone: "from-cyan/25 to-violet/15",
     items: ["Python", "TensorFlow", "PyTorch", "Scikit-Learn", "Pandas"],
+    level: 86,
+    focus: "Designing practical intelligence layers with data preparation, model training, evaluation, and product-ready inference flows.",
+    proof: ["AI/ML academic foundation", "Deep learning practice", "Applied product features"],
   },
   {
     title: "Data Science",
     icon: Database,
     tone: "from-mint/20 to-cyan/10",
-    items: ["Data Analysis", "Data Visualization", "Machine Learning", "Statistics"],
+    items: ["Data Analysis", "Data Visualization", "Machine Learning", "Statistics", "Power BI"],
+    level: 82,
+    focus: "Turning raw datasets into clear analysis, visual reporting, and decision-ready insights for product and business questions.",
+    proof: ["Exploratory analysis", "Visual storytelling", "Metric-led decisions"],
   },
   {
-    title: "Development",
+    title: "Full-Stack Engineering",
     icon: Code2,
     tone: "from-violet/25 to-coral/10",
-    items: ["React", "Next.js", "TypeScript", "Node.js"],
+    items: ["React", "Next.js", "TypeScript", "Node.js", "Express"],
+    level: 90,
+    focus: "Building responsive interfaces, reliable APIs, database-backed workflows, and product surfaces that feel polished end to end.",
+    proof: ["Real estate platform", "Portfolio systems", "REST API delivery"],
   },
   {
-    title: "DevOps",
+    title: "Security & DevOps",
     icon: ServerCog,
     tone: "from-coral/20 to-cyan/10",
-    items: ["Linux", "Docker", "Kubernetes", "Nginx", "CI/CD"],
+    items: ["Linux", "Docker", "Git", "Postman", "Wireshark", "CI/CD"],
+    level: 78,
+    focus: "Working across Linux environments, API testing, deployment habits, automation, and security-aware engineering practices.",
+    proof: ["Secure architecture habits", "Network analysis practice", "DevSecOps direction"],
   },
   {
     title: "Cloud & Database",
     icon: Boxes,
     tone: "from-cyan/20 to-mint/10",
-    items: ["Firebase", "PostgreSQL", "Neon", "AWS"],
+    items: ["PostgreSQL", "MySQL", "Firebase", "Neon", "Cloudinary", "AWS"],
+    level: 80,
+    focus: "Structuring data layers, hosted databases, media pipelines, and storage flows that support real application behavior.",
+    proof: ["PostgreSQL systems", "Cloudinary uploads", "Auth/session data"],
+  },
+  {
+    title: "Cybersecurity",
+    icon: ShieldCheck,
+    tone: "from-mint/20 to-violet/15",
+    items: ["Secure Architecture", "SecOps", "Regex", "Network Security", "Data Protection"],
+    level: 74,
+    focus: "Building a stronger security lens around user data, threat reasoning, application hardening, and safer defaults.",
+    proof: ["SecOps learning path", "Threat detection interest", "Clean secure coding"],
   },
 ];
 
-const projects = [
+const projects: Project[] = [
   {
-    title: "Open Source Vercel Alternative",
-    description: "A deployment platform with GitHub-connected releases and containerized previews.",
-    features: ["GitHub Integration", "Docker Deployments", "Logs", "Custom Domains"],
+    title: "Ecommerce Repo: Siddipet Real Estate Web",
+    description: "Built a district-level property discovery platform with verified listings, saved-property comparison, inquiry tracking, WhatsApp contact flows, media uploads, protected admin operations, audit logs, and chatbot support.",
+    features: ["Property Search", "Saved Listings", "Admin Dashboard", "Audit Logs", "WhatsApp Contact", "AI Chatbot"],
     accent: "cyan",
+    demoUrl: "https://real-estate-ten-red-17.vercel.app",
+    repoUrl: "https://github.com/Akash17-dev/Ecommerce",
+    images: [
+      "https://github.com/user-attachments/assets/56271c79-8e5e-4992-84c5-35b73d103b80",
+    ],
+    preview: "District-level property discovery app with verified listings, inquiry tracking, media uploads, and authenticated admin operations.",
+    caseStudy: [
+      ["Problem", "Local property discovery was fragmented across calls, chats, and manual follow-ups."],
+      ["Solution", "Centralized listings, saved comparisons, inquiry flows, WhatsApp actions, and admin workflows in one product surface."],
+      ["Tech", "React, Tailwind CSS, Node.js, Express, PostgreSQL, JWT auth, and Cloudinary media handling."],
+      ["Result", "A cleaner path for buyers to explore properties and for admins to manage listings, leads, uploads, and follow-ups."],
+    ],
+    details: [
+      "Public users can search verified land, houses, villas, and commercial spaces across Siddipet mandals.",
+      "Saved listings stay in the browser, making it easier for visitors to compare properties before contacting the office.",
+      "The admin dashboard manages listings, inquiries, follow-ups, users, audit logs, dashboard metrics, and uploads.",
+      "The platform supports optional Cloudinary media, WhatsApp/Telegram/email notifications, and a chatbot fallback.",
+    ],
+    stack: ["React", "Vite", "Tailwind CSS", "Node.js", "Express", "PostgreSQL", "JWT Auth", "Cloudinary"],
   },
   {
     title: "AI Fitness Coach",
@@ -105,18 +175,36 @@ const projects = [
 ];
 
 const timeline = [
-  ["2024", "Started Data Science Journey"],
-  ["2025", "Built AI Applications"],
-  ["2025", "Learned Linux & DevOps"],
-  ["2026", "Building Startup-Level Products"],
-];
-
-const githubStats = [
-  ["Total Repositories", 32],
-  ["Contributions", 1240],
-  ["Stars", 86],
-  ["Followers", 58],
-  ["Most Used Languages", 6],
+  {
+    year: "2024",
+    title: "Started The AI/ML Foundation",
+    description: "Built the base in Python, statistics, data analysis, machine learning concepts, and the mindset needed for intelligent systems.",
+    tags: ["Python", "ML Basics", "Data Analysis"],
+  },
+  {
+    year: "2025",
+    title: "Moved Into Full-Stack Product Building",
+    description: "Expanded from learning code to shipping web experiences using React, Tailwind, Node.js, Express, and database-backed flows.",
+    tags: ["React", "Node.js", "Tailwind"],
+  },
+  {
+    year: "2025",
+    title: "Added Security And Systems Thinking",
+    description: "Started focusing on Linux, network security, Wireshark, API testing, automation, and security-first architecture habits.",
+    tags: ["Linux", "SecOps", "Postman"],
+  },
+  {
+    year: "2026",
+    title: "Shipped Real-World Startup-Style Apps",
+    description: "Built larger product surfaces like the Siddipet Real Estate platform with public discovery, admin workflows, PostgreSQL, uploads, logs, and notifications.",
+    tags: ["PostgreSQL", "Express", "Product UX"],
+  },
+  {
+    year: "Now",
+    title: "Combining AI, Web, And DevSecOps",
+    description: "Current direction is AI-driven threat detection, secure full-stack systems, polished frontend UX, and scalable founder-led prototypes.",
+    tags: ["AI Features", "DevSecOps", "UX"],
+  },
 ];
 
 const ventures = [
@@ -133,10 +221,12 @@ export default function Home() {
       <MouseGlow />
       <AshClouds />
       <AuroraBackground />
+      <ShaderBackdrop className="pointer-events-none fixed inset-0 z-0 h-screen w-screen mix-blend-screen opacity-45" />
       <Header />
+      <MobileBottomNav />
 
       <section id="hero" className="relative min-h-screen overflow-hidden pt-24">
-        <div className="section-shell grid min-h-[calc(100vh-6rem)] items-center gap-12 py-16 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="section-shell relative z-10 grid min-h-[calc(100vh-6rem)] items-center gap-12 py-16 lg:grid-cols-[1.05fr_0.95fr]">
           <MotionDiv
             className="relative z-10"
             initial={{ opacity: 0, y: 28 }}
@@ -160,20 +250,29 @@ export default function Home() {
               Building intelligent products across AI, machine learning, data science,
               modern web engineering, Linux systems, and DevOps automation.
             </p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {credibilitySignals.map((signal) => (
+                <span key={signal} className="rounded-full border border-white/12 bg-white/[0.055] px-3 py-1.5 text-xs font-semibold text-white/[0.72]">
+                  {signal}
+                </span>
+              ))}
+            </div>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <MagneticButton href="#projects" icon={<ArrowUpRight className="h-4 w-4" />}>
-                View Projects
+                Explore My Work
               </MagneticButton>
-              <MagneticButton href="/resume.pdf" icon={<Download className="h-4 w-4" />} variant="muted">
+              <MagneticButton href="/Aakula_Akash_ATS_Optimized_Resume.docx" icon={<Download className="h-4 w-4" />} variant="muted">
                 Download Resume
               </MagneticButton>
               <MagneticButton href="#contact" icon={<Mail className="h-4 w-4" />} variant="ghost">
-                Contact Me
+                Discuss a Project
               </MagneticButton>
             </div>
           </MotionDiv>
 
-          <div className="relative h-[430px] min-h-[430px] overflow-hidden rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_50%_35%,rgba(110,231,255,0.20),transparent_20rem),linear-gradient(135deg,rgba(255,255,255,0.04),rgba(255,255,255,0.01))] shadow-glass lg:h-[590px]">
+          <div className="relative h-[430px] min-h-[430px] overflow-hidden rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_50%_35%,rgba(110,231,255,0.14),transparent_20rem),linear-gradient(135deg,rgba(255,255,255,0.035),rgba(255,255,255,0.01))] shadow-glass lg:h-[590px]">
+            <ShaderBackdrop />
+            <div className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(circle_at_50%_48%,transparent_0,rgba(5,6,10,0.08)_34%,rgba(5,6,10,0.46)_100%)]" />
             <HeroOrbLoader />
             <OrbitFace />
             <FloatingCard className="left-0 top-12" title="AI Pipeline" value="96%" icon={<Bot />} />
@@ -192,8 +291,21 @@ export default function Home() {
           </p>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-white/[0.64]">
             I enjoy transforming ideas into scalable products and startup-grade
-            solutions.
+            solutions, with a security-first mindset and a bias for shipping
+            useful, real-world applications.
           </p>
+          <div className="mt-8 grid gap-4 lg:grid-cols-3">
+            {aboutDetails.map((detail) => (
+              <div key={detail.title} className="rounded-3xl border border-white/10 bg-black/20 p-5">
+                <h3 className="text-sm font-bold uppercase tracking-[0.18em] text-cyan">
+                  {detail.title}
+                </h3>
+                <p className="mt-3 text-sm leading-6 text-white/[0.62]">
+                  {detail.description}
+                </p>
+              </div>
+            ))}
+          </div>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {stats.map(([label, value, suffix]) => (
               <div key={label} className="rounded-3xl border border-white/10 bg-white/[0.05] p-5">
@@ -207,26 +319,65 @@ export default function Home() {
         </div>
       </MotionSection>
 
-      <MotionSection id="skills" className="section-shell" data-reveal>
-        <SectionHeading eyebrow="Skills" title="A full-stack AI builder toolkit." />
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
+      <MotionSection id="skills" className="section-shell !py-16 sm:!py-24" data-reveal>
+        <SectionHeading eyebrow="Capability Stack" title="A focused toolkit for AI-first product engineering." />
+        <div className="mb-8 max-w-3xl text-base leading-7 text-white/[0.62]">
+          A practical blend of AI, data, web engineering, cloud, and security skills, shaped for building useful products rather than collecting tools.
+        </div>
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {skills.map((skill, index) => (
             <MotionDiv
               key={skill.title}
-              className={`glass-panel group rounded-[1.6rem] bg-gradient-to-br ${skill.tone} p-5 transition duration-300 hover:-translate-y-2`}
+              className={`calm-panel group flex min-h-[23rem] flex-col overflow-hidden rounded-[1.35rem] bg-gradient-to-br ${skill.tone} p-5 transition duration-300 hover:-translate-y-1.5 hover:border-cyan/30`}
               initial={{ opacity: 0, y: 32 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ delay: index * 0.08 }}
             >
-              <skill.icon className="h-7 w-7 text-cyan" />
-              <h3 className="mt-5 text-xl font-bold">{skill.title}</h3>
+              <div className="flex items-start justify-between gap-4">
+                <div className="grid h-11 w-11 place-items-center rounded-2xl border border-white/10 bg-white/[0.07] text-cyan transition group-hover:bg-cyan/10">
+                  <skill.icon className="h-6 w-6" />
+                </div>
+                <div className="rounded-full border border-white/10 bg-black/20 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.16em] text-white/60">
+                  {skill.level}% depth
+                </div>
+              </div>
+              <h3 className="mt-5 text-xl font-bold text-white">{skill.title}</h3>
+              <p className="mt-3 text-sm leading-6 text-white/[0.62]">{skill.focus}</p>
+
+              <div className="mt-5">
+                <div className="mb-2 flex items-center justify-between text-[10px] font-semibold uppercase tracking-[0.18em] text-white/[0.42]">
+                  <span>Working proficiency</span>
+                  <span>In use</span>
+                </div>
+                <div className="h-1.5 overflow-hidden rounded-full bg-white/10">
+                  <MotionDiv
+                    className="h-full rounded-full bg-gradient-to-r from-cyan via-mint to-violet"
+                    initial={{ width: 0 }}
+                    whileInView={{ width: `${skill.level}%` }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, ease: "easeOut", delay: index * 0.05 }}
+                  />
+                </div>
+              </div>
+
               <div className="mt-5 flex flex-wrap gap-2">
                 {skill.items.map((item) => (
-                  <span key={item} className="rounded-full bg-white/[0.08] px-3 py-1.5 text-xs text-white/[0.72]">
+                  <span key={item} className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1.5 text-xs text-white/[0.72]">
                     {item}
                   </span>
                 ))}
+              </div>
+
+              <div className="mt-auto pt-6">
+                <div className="grid gap-2">
+                  {skill.proof.map((point) => (
+                    <div key={point} className="flex items-center gap-2 text-xs text-white/[0.58]">
+                      <span className="h-1.5 w-1.5 rounded-full bg-cyan shadow-[0_0_12px_rgba(110,231,255,0.55)]" />
+                      {point}
+                    </div>
+                  ))}
+                </div>
               </div>
             </MotionDiv>
           ))}
@@ -235,91 +386,45 @@ export default function Home() {
 
       <MotionSection id="projects" className="section-shell" data-reveal>
         <SectionHeading eyebrow="Featured Projects" title="Products shaped like real startups." />
-        <div className="grid gap-5 lg:grid-cols-2">
-          {projects.map((project) => (
-            <TiltCard key={project.title} className="glass-panel min-h-[330px] rounded-[2rem] p-6">
-              <div className="flex h-full flex-col justify-between">
-                <div>
-                  <div className="mb-6 h-36 overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04]">
-                    <div className={`h-full bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.45),transparent_12rem),linear-gradient(135deg,var(--tw-gradient-stops))] ${
-                      project.accent === "cyan"
-                        ? "from-cyan/35 via-violet/20 to-transparent"
-                        : project.accent === "mint"
-                          ? "from-mint/30 via-cyan/15 to-transparent"
-                          : project.accent === "violet"
-                            ? "from-violet/35 via-coral/15 to-transparent"
-                            : "from-coral/30 via-cyan/15 to-transparent"
-                    }`} />
-                  </div>
-                  <h3 className="text-2xl font-bold">{project.title}</h3>
-                  <p className="mt-3 text-white/[0.62]">{project.description}</p>
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {project.features.map((feature) => (
-                      <span key={feature} className="pill px-3 py-1 text-xs">
-                        {feature}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <div className="mt-8 flex gap-3">
-                  <MagneticButton href="#" icon={<ArrowUpRight className="h-4 w-4" />}>
-                    Live Demo
-                  </MagneticButton>
-                  <MagneticButton href="#" icon={<Github className="h-4 w-4" />} variant="ghost">
-                    GitHub
-                  </MagneticButton>
-                </div>
-              </div>
-            </TiltCard>
-          ))}
-        </div>
+        <ProjectShowcase projects={projects} />
       </MotionSection>
 
-      <MotionSection id="github" className="section-shell" data-reveal>
-        <SectionHeading eyebrow="GitHub Dashboard" title="Signals from the build graph." />
-        <div className="glass-panel rounded-[2rem] p-6 sm:p-8">
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {githubStats.map(([label, value]) => (
-              <div key={label} className="rounded-3xl border border-white/10 bg-black/20 p-5">
-                <div className="text-3xl font-black text-white">
-                  <AnimatedCounter value={Number(value)} suffix={label === "Most Used Languages" ? "" : "+"} />
-                </div>
-                <p className="mt-2 text-sm text-white/[0.58]">{label}</p>
-              </div>
-            ))}
-          </div>
-          <div className="mt-8 grid gap-3 md:grid-cols-5">
-            {["TypeScript", "Python", "Shell", "SQL", "JavaScript"].map((lang, index) => (
-              <div key={lang} className="h-3 overflow-hidden rounded-full bg-white/10">
-                <MotionDiv
-                  className="h-full rounded-full bg-gradient-to-r from-cyan via-mint to-violet"
-                  initial={{ width: 0 }}
-                  whileInView={{ width: `${94 - index * 12}%` }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1.2, ease: "easeOut" }}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
+      <MotionSection id="github" className="section-shell !py-16 sm:!py-24" data-reveal>
+        <SectionHeading eyebrow="GitHub Dashboard" title="Open-source activity with product discipline." />
+        <GitHubDashboard username="Akash17-dev" />
       </MotionSection>
 
       <MotionSection id="experience" className="section-shell" data-reveal>
         <SectionHeading eyebrow="Experience Timeline" title="From learning curve to product velocity." />
         <div className="relative mx-auto max-w-4xl">
           <div className="absolute left-5 top-0 h-full w-px bg-gradient-to-b from-cyan via-violet to-transparent sm:left-1/2" />
-          {timeline.map(([year, title], index) => (
+          {timeline.map((event, index) => (
             <MotionDiv
-              key={`${year}-${title}`}
+              key={`${event.year}-${event.title}`}
               className={`relative mb-6 flex ${index % 2 === 0 ? "sm:justify-start" : "sm:justify-end"}`}
               initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-80px" }}
             >
-              <div className="glass-panel ml-12 w-full rounded-3xl p-5 sm:ml-0 sm:w-[46%]">
-                <CalendarDays className="h-5 w-5 text-cyan" />
-                <div className="mt-4 text-sm text-white/[0.52]">{year}</div>
-                <h3 className="mt-1 text-xl font-bold">{title}</h3>
+              <div className="absolute left-[1.05rem] top-7 z-10 h-3 w-3 rounded-full border border-cyan/60 bg-ink shadow-[0_0_22px_rgba(110,231,255,0.55)] sm:left-1/2 sm:-translate-x-1/2" />
+              <div className="calm-panel ml-12 w-full rounded-3xl p-5 transition duration-300 hover:-translate-y-1 hover:border-cyan/30 sm:ml-0 sm:w-[46%]">
+                <div className="flex items-center gap-3 text-cyan">
+                  <div className="grid h-10 w-10 place-items-center rounded-2xl border border-white/10 bg-white/[0.07]">
+                    <CalendarDays className="h-5 w-5" />
+                  </div>
+                  <span className="text-sm font-bold uppercase tracking-[0.18em] text-white/[0.52]">
+                    {event.year}
+                  </span>
+                </div>
+                <h3 className="mt-4 text-xl font-bold">{event.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-white/[0.6]">{event.description}</p>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {event.tags.map((tag) => (
+                    <span key={tag} className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-xs text-white/[0.68]">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
             </MotionDiv>
           ))}
@@ -355,14 +460,14 @@ export default function Home() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               {[
-                [Github, "GitHub"],
-                [Linkedin, "LinkedIn"],
-                [Twitter, "X/Twitter"],
-                [Mail, "Email"],
-              ].map(([Icon, label]) => (
+                [Github, "GitHub", "https://github.com/Akash17-dev"],
+                [Linkedin, "LinkedIn", "https://www.linkedin.com/in/akash-aakula-584002397/"],
+                [MessageCircle, "WhatsApp", "https://wa.me/918897422872"],
+                [Mail, "Email", "mailto:akulaakash17@gmail.com"],
+              ].map(([Icon, label, href]) => (
                 <a
                   key={String(label)}
-                  href="#"
+                  href={String(href)}
                   aria-label={String(label)}
                   className="grid h-12 w-12 place-items-center rounded-full border border-white/12 bg-white/[0.06] text-white/70 transition hover:border-cyan/40 hover:text-cyan"
                 >
@@ -375,11 +480,41 @@ export default function Home() {
         </div>
       </MotionSection>
 
-      <footer className="mx-auto flex max-w-7xl flex-col gap-3 px-5 pb-10 text-sm text-white/[0.42] sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-10">
+      <footer className="relative z-10 mx-auto flex max-w-7xl flex-col gap-3 px-5 pb-28 text-sm text-white/[0.42] sm:flex-row sm:items-center sm:justify-between sm:px-8 md:pb-10 lg:px-10">
         <p>© 2026 Akash Aakula. Built with Next.js, Three.js, and liquid glass details.</p>
         <a href="#hero" className="transition hover:text-cyan">Back to top</a>
       </footer>
     </main>
+  );
+}
+
+function MobileBottomNav() {
+  const items = [
+    [HomeIcon, "Home", "#hero"],
+    [UserRound, "About", "#about"],
+    [FolderKanban, "Projects", "#projects"],
+    [BarChart3, "GitHub", "#github"],
+    [Phone, "Contact", "#contact"],
+  ];
+
+  return (
+    <nav
+      aria-label="Mobile section navigation"
+      className="fixed inset-x-3 bottom-3 z-50 rounded-full border border-white/15 bg-ink/75 px-2 py-2 shadow-glass backdrop-blur-2xl md:hidden"
+    >
+      <div className="grid grid-cols-5 gap-1">
+        {items.map(([Icon, label, href]) => (
+          <a
+            key={String(label)}
+            href={String(href)}
+            aria-label={String(label)}
+            className="grid h-12 place-items-center rounded-full text-white/[0.62] transition hover:bg-white/[0.08] hover:text-cyan focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan"
+          >
+            <Icon className="h-5 w-5" />
+          </a>
+        ))}
+      </div>
+    </nav>
   );
 }
 
@@ -403,7 +538,7 @@ function Header() {
         </div>
         <a href="#contact" className="liquid-button min-h-10 px-4 py-2">
           <Send className="h-4 w-4" />
-          <span className="hidden sm:inline">Start</span>
+          <span className="hidden sm:inline">Discuss a Project</span>
         </a>
       </nav>
     </header>
@@ -434,7 +569,7 @@ function FloatingCard({
 }) {
   return (
     <MotionDiv
-      className={`glass-panel absolute z-10 hidden w-44 rounded-3xl p-4 shadow-glow lg:block ${className}`}
+      className={`glass-panel absolute z-20 hidden w-44 rounded-3xl p-4 shadow-glow lg:block ${className}`}
       animate={{ y: [0, -12, 0] }}
       transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
     >

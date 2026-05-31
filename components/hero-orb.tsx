@@ -47,14 +47,13 @@ function LiquidSphere() {
 
 export default function HeroOrb() {
   return (
-    <div data-parallax className="absolute inset-0">
+    <div data-parallax className="absolute inset-0 z-10">
       <Canvas
         camera={{ position: [0, 0, 6], fov: 42 }}
         dpr={[1, 1.6]}
         gl={{ alpha: true, antialias: true }}
         performance={{ min: 0.6 }}
       >
-        <color attach="background" args={["#05060a"]} />
         <ambientLight intensity={0.9} />
         <directionalLight position={[2, 4, 5]} intensity={3.2} color="#ffffff" />
         <pointLight position={[4, 4, 4]} intensity={5.5} color="#6ee7ff" />

@@ -38,7 +38,7 @@ export function OrbitFace() {
   return (
     <div
       ref={ref}
-      className="glass-panel pointer-events-none absolute left-1/2 top-1/2 z-10 h-52 w-52 -translate-x-1/2 -translate-y-1/2 rounded-[2.2rem] md:h-64 md:w-64"
+      className="glass-panel pointer-events-none absolute left-1/2 top-1/2 z-20 h-52 w-52 -translate-x-1/2 -translate-y-1/2 rounded-[2.2rem] md:h-64 md:w-64"
       style={{
         transform:
           "translate(calc(-50% + var(--face-x, 0px)), calc(-50% + var(--face-y, 0px)))",
