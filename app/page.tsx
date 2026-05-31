@@ -28,6 +28,7 @@ import { TiltCard } from "@/components/tilt-card";
 import { RoleSwitcher } from "@/components/role-switcher";
 import { HeroOrbLoader } from "@/components/hero-orb-loader";
 import { OrbitFace } from "@/components/orbit-face";
+import { AshClouds } from "@/components/ash-clouds";
 
 const roles = [
   "AI/ML Engineer",
@@ -130,6 +131,7 @@ export default function Home() {
     <main className="relative min-h-screen overflow-hidden bg-ink text-white">
       <ScrollAnimations />
       <MouseGlow />
+      <AshClouds />
       <AuroraBackground />
       <Header />
 
