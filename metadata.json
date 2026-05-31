@@ -1,0 +1,6 @@
+{
+  "name": "Akash Lucky Portfolio",
+  "description": "Premium creative agency-level portfolio website for AI Engineer and Full-Stack Developer Akash Lucky, featuring immersive interactive graphics, scroll mechanics, and typography.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
