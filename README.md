@@ -1,5 +1,20 @@
+# Akash Aakula Portfolio
 
 A premium personal portfolio built with Next.js, React, Tailwind CSS, Framer Motion, Three.js, and custom WebGL shader effects. The site presents Akash Aakula as an AI/ML engineer, data scientist, full-stack developer, and DevOps-focused builder through a polished single-page experience.
+
+## Live Demo
+
+Available at [https://portfolio-pi-livid-lni8rjwhws.vercel.app/](https://portfolio-pi-livid-lni8rjwhws.vercel.app/)
+
+## Preview
+
+### Home Page
+
+<img src="./public/readme-assets/home-page.png" alt="Akash Aakula portfolio home page" width="900" />
+
+### Loading Page
+
+<img src="./public/readme-assets/loading-page.png" alt="Akash Aakula portfolio loading page" width="900" />
 
 ## Highlights
 
@@ -116,4 +131,3 @@ npm run lint     # Run Next.js lint command
 - Adjust theme colors in `tailwind.config.ts`.
 - Tune global effects, panels, and background layers in `app/globals.css`.
 - Modify shader behavior in `components/shader-backdrop.tsx`.
-
