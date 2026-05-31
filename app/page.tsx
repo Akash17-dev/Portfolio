@@ -27,6 +27,7 @@ import { SectionHeading } from "@/components/section-heading";
 import { TiltCard } from "@/components/tilt-card";
 import { RoleSwitcher } from "@/components/role-switcher";
 import { HeroOrbLoader } from "@/components/hero-orb-loader";
+import { OrbitFace } from "@/components/orbit-face";
 
 const roles = [
   "AI/ML Engineer",
@@ -172,6 +173,7 @@ export default function Home() {
 
           <div className="relative h-[430px] min-h-[430px] overflow-hidden rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_50%_35%,rgba(110,231,255,0.20),transparent_20rem),linear-gradient(135deg,rgba(255,255,255,0.04),rgba(255,255,255,0.01))] shadow-glass lg:h-[590px]">
             <HeroOrbLoader />
+            <OrbitFace />
             <FloatingCard className="left-0 top-12" title="AI Pipeline" value="96%" icon={<Bot />} />
             <FloatingCard className="bottom-12 right-2" title="Deploy Ready" value="24/7" icon={<Terminal />} />
           </div>
