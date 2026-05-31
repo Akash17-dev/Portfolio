@@ -48,7 +48,7 @@ body::after {
   z-index: 30;
   pointer-events: none;
   content: "";
-  opacity: 0.12;
+  opacity: 0.045;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
@@ -63,12 +63,16 @@ body::after {
 
   .glass-panel {
     position: relative;
-    border: 1px solid rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.26);
     background:
-      linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.045)),
-      rgba(255, 255, 255, 0.06);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.26), 0 24px 80px rgba(0, 0, 0, 0.34);
-    backdrop-filter: blur(28px) saturate(150%);
+      linear-gradient(135deg, rgba(255, 255, 255, 0.105), rgba(255, 255, 255, 0.025)),
+      rgba(12, 17, 23, 0.32);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.34),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.08),
+      0 24px 70px rgba(0, 0, 0, 0.34);
+    backdrop-filter: blur(10px) saturate(130%);
+    -webkit-backdrop-filter: blur(10px) saturate(130%);
   }
 
   .glass-panel::before {
@@ -77,18 +81,24 @@ body::after {
     pointer-events: none;
     content: "";
     border-radius: inherit;
-    background: linear-gradient(120deg, rgba(255, 255, 255, 0.34), transparent 24%, transparent 65%, rgba(110, 231, 255, 0.15));
-    mask-image: linear-gradient(#000, transparent 52%);
-    opacity: 0.7;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.38), transparent 18%, transparent 68%, rgba(110, 231, 255, 0.18));
+    mask-image: linear-gradient(#000, transparent 58%);
+    opacity: 0.82;
   }
 
   .pill {
-    @apply rounded-full border border-white/15 bg-white/[0.07] px-4 py-2 text-sm text-white/[0.78] backdrop-blur-2xl;
+    @apply rounded-full border border-white/25 bg-white/[0.045] px-4 py-2 text-sm text-white/[0.82] backdrop-blur-md;
   }
 
   .liquid-button {
     @apply relative inline-flex min-h-12 items-center justify-center gap-2 overflow-hidden rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white shadow-glass transition duration-300;
     background: linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.05));
+  }
+
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(44px);
+    will-change: opacity, transform;
   }
 
   .liquid-button::after {

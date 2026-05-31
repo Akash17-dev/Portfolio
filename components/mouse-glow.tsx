@@ -12,9 +12,9 @@ export function MouseGlow() {
     const onMove = (event: PointerEvent) => {
       node.animate(
         {
-          transform: `translate(${event.clientX - 240}px, ${event.clientY - 240}px)`,
+          transform: `translate(${event.clientX - 96}px, ${event.clientY - 96}px)`,
         },
-        { duration: 700, fill: "forwards", easing: "cubic-bezier(0.22, 1, 0.36, 1)" },
+        { duration: 360, fill: "forwards", easing: "cubic-bezier(0.22, 1, 0.36, 1)" },
       );
     };
 
@@ -26,7 +26,7 @@ export function MouseGlow() {
     <div
       ref={ref}
       aria-hidden="true"
-      className="pointer-events-none fixed left-0 top-0 z-20 h-[30rem] w-[30rem] rounded-full bg-cyan/10 blur-3xl"
+      className="pointer-events-none fixed left-0 top-0 z-20 h-48 w-48 rounded-full bg-cyan/[0.075] blur-2xl"
     />
   );
 }

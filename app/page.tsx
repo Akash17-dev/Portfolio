@@ -147,7 +147,7 @@ export default function Home() {
             <h1 className="max-w-5xl text-balance text-6xl font-black leading-[0.9] tracking-[-0.04em] text-white sm:text-7xl lg:text-8xl">
               AKASH
               <span className="block bg-gradient-to-r from-cyan via-white to-violet bg-clip-text text-transparent">
-                LUCKY
+                AAKULA
               </span>
             </h1>
             <div className="mt-6 min-h-12 text-2xl font-semibold text-white/[0.86] sm:text-3xl">
@@ -170,7 +170,7 @@ export default function Home() {
             </div>
           </MotionDiv>
 
-          <div className="relative h-[430px] min-h-[430px] lg:h-[590px]">
+          <div className="relative h-[430px] min-h-[430px] overflow-hidden rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_50%_35%,rgba(110,231,255,0.20),transparent_20rem),linear-gradient(135deg,rgba(255,255,255,0.04),rgba(255,255,255,0.01))] shadow-glass lg:h-[590px]">
             <HeroOrbLoader />
             <FloatingCard className="left-0 top-12" title="AI Pipeline" value="96%" icon={<Bot />} />
             <FloatingCard className="bottom-12 right-2" title="Deploy Ready" value="24/7" icon={<Terminal />} />
