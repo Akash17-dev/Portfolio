@@ -8,13 +8,14 @@ Available at [https://portfolio-pi-livid-lni8rjwhws.vercel.app/](https://portfol
 
 ## Preview
 
-### Home Page
-
-<img src="./public/readme-assets/home-page.png" alt="Akash Aakula portfolio home page" width="900" />
-
 ### Loading Page
 
 <img src="./public/readme-assets/loading-page.png" alt="Akash Aakula portfolio loading page" width="900" />
+
+
+### Home Page
+
+<img src="./public/readme-assets/home-page.png" alt="Akash Aakula portfolio home page" width="900" />
 
 ## Highlights
 
