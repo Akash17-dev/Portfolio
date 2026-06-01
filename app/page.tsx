@@ -150,10 +150,29 @@ const projects: Project[] = [
     stack: ["React", "Vite", "Tailwind CSS", "Node.js", "Express", "PostgreSQL", "JWT Auth", "Cloudinary"],
   },
   {
-    title: "AI Fitness Coach",
-    description: "Adaptive workouts, habit loops, analytics, and social motivation for fitness teams.",
-    features: ["AI Workouts", "Gamification", "Leaderboards", "Analytics"],
-    accent: "mint",
+    title: "Solar System — Helios Tour",
+    description: "Built an immersive WebGL solar system tour with procedural planet rendering, shader-based lighting, destination controls, motion playback, and detailed scientific data panels for each planet.",
+    features: ["WebGL Shaders", "Planet Tour", "Scientific Data", "Motion Controls", "Vercel"],
+    accent: "coral",
+    demoUrl: "https://solar-system-xi-ruddy.vercel.app/",
+    repoUrl: "https://github.com/Akash17-dev/Solar-System",
+    images: [
+      "https://github.com/user-attachments/assets/d38ee6aa-fa89-4546-bfb1-37bc12672d6f",
+    ],
+    preview: "An interactive solar system flyby with shader-rendered planets, guided controls, and science-rich planet detail panels.",
+    caseStudy: [
+      ["Problem", "Space learning interfaces often feel flat, static, and disconnected from the scale of the subject."],
+      ["Solution", "Created an immersive planet tour with real-time WebGL visuals, selectable destinations, and per-planet data cards."],
+      ["Tech", "React, Vite, custom WebGL shaders, procedural planet surfaces, texture sampling, and Vercel deployment."],
+      ["Result", "A polished educational 3D experience that makes solar-system exploration feel interactive and cinematic."],
+    ],
+    details: [
+      "The scene uses shader-based rendering for volumetric lighting, procedural planet surfaces, bump mapping, and atmospheric effects.",
+      "Users can jump between the Sun, Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune from the side navigation.",
+      "Each celestial body includes scientific attributes such as mass, diameter, gravity, orbital period, distance, temperature, composition, and moons.",
+      "The UI includes tour controls for previous, next, auto timing, motion, and a hide/show interface mode.",
+    ],
+    stack: ["React", "Vite", "WebGL", "GLSL Shaders", "Procedural Textures", "CSS", "Vercel"],
   },
   {
     title: "Smart Attendance System",
@@ -162,10 +181,29 @@ const projects: Project[] = [
     accent: "violet",
   },
   {
-    title: "AI Employee Retention Platform",
-    description: "Workforce sentiment intelligence with predictive insights for people teams.",
-    features: ["Feedback Analysis", "Employee Insights", "AI Predictions"],
-    accent: "coral",
+    title: "Neuroverse AI",
+    description: "Built a cinematic scroll-driven 3D AI operating-system experience with WebGL visuals, chapter-based navigation, spatial HUD panels, AI roadmap generation, career analysis, startup ideation, and a server-side Gemini/GenAI command core.",
+    features: ["3D WebGL", "AI Core", "Scroll Worlds", "Gemini API", "Cloud Run"],
+    accent: "cyan",
+    demoUrl: "https://neuroverse-ai-485600757233.asia-southeast1.run.app/",
+    repoUrl: "https://github.com/Akash17-dev/3D-website",
+    images: [
+      "https://github.com/user-attachments/assets/5f1658a6-5b4e-4c9f-bad5-3ca600db3d07",
+    ],
+    preview: "A futuristic 3D AI universe with WebGL motion, chapter navigation, Gemini-powered AI tools, and a Cloud Run deployment.",
+    caseStudy: [
+      ["Problem", "Traditional portfolio and AI tool pages feel static, disconnected, and forgettable."],
+      ["Solution", "Designed a spatial AI workspace with scroll-based chapters for learning, careers, startup ideas, and command-center chat."],
+      ["Tech", "React, Vite, Three.js, GSAP, Express, Tailwind CSS, Gemini API, and Google Cloud Run."],
+      ["Result", "A high-impact interactive AI product experience with cinematic visuals and server-side AI workflows."],
+    ],
+    details: [
+      "The interface uses an immersive Three.js/WebGL backdrop, HUD navigation, scanline overlays, and chapter-aware scroll transitions.",
+      "AI endpoints generate learning roadmaps, career skill analysis, startup concepts, and command-core chat responses.",
+      "The Express server keeps GenAI logic server-side with mock fallbacks when API credentials are unavailable.",
+      "The project is deployed live on Google Cloud Run as a production-accessible experience.",
+    ],
+    stack: ["React", "Vite", "Three.js", "GSAP", "Express", "Gemini API", "Tailwind CSS", "Cloud Run"],
   },
 ];
 
@@ -314,67 +352,86 @@ export default function Home() {
       </MotionSection>
 
       <MotionSection id="skills" className="section-shell !py-16 sm:!py-24" data-reveal>
-        <SectionHeading eyebrow="Capability Stack" title="A focused toolkit for AI-first product engineering." />
-        <div className="mb-8 max-w-3xl text-base leading-7 text-white/[0.62]">
-          A practical blend of AI, data, web engineering, cloud, and security skills, shaped for building useful products rather than collecting tools.
-        </div>
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {skills.map((skill, index) => (
-            <MotionDiv
-              key={skill.title}
-              className={`calm-panel group flex min-h-[23rem] flex-col overflow-hidden rounded-[1.35rem] bg-gradient-to-br ${skill.tone} p-5 transition duration-300 hover:-translate-y-1.5 hover:border-cyan/30`}
-              initial={{ opacity: 0, y: 32 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ delay: index * 0.08 }}
-            >
-              <div className="flex items-start justify-between gap-4">
-                <div className="grid h-11 w-11 place-items-center rounded-2xl border border-white/10 bg-white/[0.07] text-cyan transition group-hover:bg-cyan/10">
-                  <skill.icon className="h-6 w-6" />
-                </div>
-                <div className="rounded-full border border-white/10 bg-black/20 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.16em] text-white/60">
-                  {skill.level}% depth
-                </div>
-              </div>
-              <h3 className="mt-5 text-xl font-bold text-white">{skill.title}</h3>
-              <p className="mt-3 text-sm leading-6 text-white/[0.62]">{skill.focus}</p>
+        <div className="relative overflow-hidden border-y border-white/10 bg-white/[0.025] py-10 sm:py-12">
+          <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:48px_48px] opacity-40" />
+          <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan/50 to-transparent" />
+          <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
-              <div className="mt-5">
-                <div className="mb-2 flex items-center justify-between text-[10px] font-semibold uppercase tracking-[0.18em] text-white/[0.42]">
-                  <span>Working proficiency</span>
-                  <span>In use</span>
-                </div>
-                <div className="h-1.5 overflow-hidden rounded-full bg-white/10">
-                  <MotionDiv
-                    className="h-full rounded-full bg-gradient-to-r from-cyan via-mint to-violet"
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${skill.level}%` }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1, ease: "easeOut", delay: index * 0.05 }}
-                  />
-                </div>
-              </div>
+          <div className="relative z-10 px-5 sm:px-8 lg:px-10">
+            <SectionHeading eyebrow="Capability Stack" title="A sharper operating system for building products." />
+            <div className="-mt-3 grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+              <p className="max-w-xl text-base leading-7 text-white/[0.62]">
+                Clean, focused, and production-minded. These are the capabilities I use to move from idea to working product without making the stack feel noisy.
+              </p>
 
-              <div className="mt-5 flex flex-wrap gap-2">
-                {skill.items.map((item) => (
-                  <span key={item} className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1.5 text-xs text-white/[0.72]">
-                    {item}
-                  </span>
+              <div className="grid gap-3 sm:grid-cols-3">
+                {[
+                  ["01", "Intelligence", "AI, ML, data, and applied model workflows."],
+                  ["02", "Product", "Frontend, backend, APIs, and polished interfaces."],
+                  ["03", "Systems", "Databases, Linux, cloud habits, and security thinking."],
+                ].map(([number, label, description]) => (
+                  <div key={label} className="border-l border-cyan/35 bg-black/20 px-4 py-3">
+                    <div className="text-xs font-bold uppercase tracking-[0.24em] text-cyan/70">{number}</div>
+                    <div className="mt-2 text-sm font-bold text-white">{label}</div>
+                    <p className="mt-1 text-xs leading-5 text-white/[0.48]">{description}</p>
+                  </div>
                 ))}
               </div>
+            </div>
 
-              <div className="mt-auto pt-6">
-                <div className="grid gap-2">
-                  {skill.proof.map((point) => (
-                    <div key={point} className="flex items-center gap-2 text-xs text-white/[0.58]">
-                      <span className="h-1.5 w-1.5 rounded-full bg-cyan shadow-[0_0_12px_rgba(110,231,255,0.55)]" />
-                      {point}
-                    </div>
-                  ))}
-                </div>
+            <div className="mt-10 overflow-hidden rounded-[1.5rem] border border-white/10 bg-black/25 shadow-glass backdrop-blur">
+              <div className="hidden grid-cols-[0.5fr_1.1fr_1.6fr_1.3fr] border-b border-white/10 px-5 py-3 text-[11px] font-bold uppercase tracking-[0.2em] text-white/[0.38] md:grid">
+                <span>Depth</span>
+                <span>Capability</span>
+                <span>Focus</span>
+                <span>Tools</span>
               </div>
-            </MotionDiv>
-          ))}
+
+              {skills.map((skill, index) => (
+                <MotionDiv
+                  key={skill.title}
+                  className="group grid gap-4 border-b border-white/10 px-5 py-5 transition duration-300 last:border-b-0 hover:bg-white/[0.045] md:grid-cols-[0.5fr_1.1fr_1.6fr_1.3fr] md:items-center"
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ delay: index * 0.05 }}
+                >
+                  <div>
+                    <div className="mb-2 flex items-center justify-between text-xs font-bold text-white/60 md:block">
+                      <span className="md:hidden">Depth</span>
+                      <span>{skill.level}%</span>
+                    </div>
+                    <div className="h-1.5 overflow-hidden rounded-full bg-white/10">
+                      <MotionDiv
+                        className="h-full rounded-full bg-cyan"
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${skill.level}%` }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, ease: "easeOut", delay: index * 0.05 }}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-white/10 bg-white/[0.055] text-cyan transition group-hover:border-cyan/30 group-hover:bg-cyan/10">
+                      <skill.icon className="h-5 w-5" />
+                    </div>
+                    <h3 className="text-lg font-black tracking-[-0.02em] text-white">{skill.title}</h3>
+                  </div>
+
+                  <p className="text-sm leading-6 text-white/[0.58]">{skill.focus}</p>
+
+                  <div className="flex flex-wrap gap-2">
+                    {skill.items.slice(0, 5).map((item) => (
+                      <span key={item} className="rounded-full border border-white/10 bg-white/[0.045] px-3 py-1.5 text-xs text-white/[0.68]">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </MotionDiv>
+              ))}
+            </div>
+          </div>
         </div>
       </MotionSection>
 
