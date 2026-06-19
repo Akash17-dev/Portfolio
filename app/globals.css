@@ -56,6 +56,26 @@ body::after {
   background: rgba(110, 231, 255, 0.35);
 }
 
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  z-index: 200;
+  transform: translateY(-150%);
+  border-radius: 999px;
+  border: 1px solid rgba(110, 231, 255, 0.42);
+  background: #05060a;
+  padding: 0.75rem 1rem;
+  color: #f7fbff;
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: transform 160ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
 @layer components {
   .section-shell {
     @apply relative z-10 mx-auto w-full max-w-7xl px-5 py-24 sm:px-8 lg:px-10;

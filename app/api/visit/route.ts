@@ -1,3 +1,4 @@
+import crypto from "crypto";
 import { MongoClient } from "mongodb";
 import { NextResponse } from "next/server";
 
@@ -30,6 +31,11 @@ function getMongoClient() {
 function getClientIp(request: Request) {
   const forwardedFor = request.headers.get("x-forwarded-for");
   return forwardedFor?.split(",")[0]?.trim() || request.headers.get("x-real-ip") || "";
+}
+
+function hashIp(ip: string) {
+  if (!ip) return "";
+  return crypto.createHash("sha256").update(`${ip}:${process.env.MONGODB_DATABASE || "Portfolio"}`).digest("hex");
 }
 
 function formatTelegramMessage({
@@ -84,7 +90,7 @@ export async function POST(request: Request) {
     const timezone = String(body.timezone || "").slice(0, 120);
     const language = String(body.language || "").slice(0, 80);
     const userAgent = request.headers.get("user-agent") || "";
-    const ip = getClientIp(request);
+    const ipHash = hashIp(getClientIp(request));
     const visitedAt = new Date();
 
     const client = await getMongoClient();
@@ -96,7 +102,7 @@ export async function POST(request: Request) {
       timezone,
       language,
       userAgent,
-      ip,
+      ipHash,
       visitedAt,
     });
 

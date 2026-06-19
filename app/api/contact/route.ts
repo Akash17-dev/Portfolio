@@ -39,6 +39,35 @@ function getMongoClient() {
   return clientPromise;
 }
 
+function getClientIp(request: Request) {
+  const forwardedFor = request.headers.get("x-forwarded-for");
+  return forwardedFor?.split(",")[0]?.trim() || request.headers.get("x-real-ip") || "unknown";
+}
+
+async function checkRateLimit(request: Request) {
+  const client = await getMongoClient();
+  const database = client.db(getDatabaseName());
+  const collection = database.collection("contact_rate_limits");
+  const windowMs = 60 * 60 * 1000;
+  const now = new Date();
+  const windowStart = new Date(now.getTime() - windowMs);
+  const key = getClientIp(request);
+
+  await collection.deleteMany({ updatedAt: { $lt: windowStart } });
+
+  const result = await collection.findOneAndUpdate(
+    { key },
+    {
+      $inc: { count: 1 },
+      $set: { updatedAt: now },
+      $setOnInsert: { createdAt: now },
+    },
+    { upsert: true, returnDocument: "after" },
+  );
+
+  return Number(result?.count || 0) <= 5;
+}
+
 function getContactErrorMessage(error: unknown) {
   const errorName = error instanceof Error ? error.name : "";
   const message = error instanceof Error ? error.message : "";
@@ -93,6 +122,11 @@ export async function POST(request: Request) {
 
     if (message.length < 10) {
       return NextResponse.json({ error: "Please include a little more detail in your message." }, { status: 400 });
+    }
+
+    const isAllowed = await checkRateLimit(request);
+    if (!isAllowed) {
+      return NextResponse.json({ error: "Too many messages. Please try again later." }, { status: 429 });
     }
 
     const client = await getMongoClient();

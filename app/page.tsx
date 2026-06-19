@@ -250,6 +250,7 @@ const ventures = [
 export default function Home() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-ink text-white">
+      <a href="#hero" className="skip-link">Skip to content</a>
       <MouseGlow />
       <AshClouds />
       <AuroraBackground />
@@ -481,7 +482,10 @@ export default function Home() {
 
       <footer className="relative z-10 mx-auto flex max-w-7xl flex-col gap-3 px-5 pb-28 text-sm text-white/[0.42] sm:flex-row sm:items-center sm:justify-between sm:px-8 md:pb-10 lg:px-10">
         <p>© 2026 Akash Aakula. Built with Next.js, Three.js, and liquid glass details.</p>
-        <a href="#hero" className="transition hover:text-cyan">Back to top</a>
+        <div className="flex flex-wrap gap-4">
+          <a href="/privacy" className="transition hover:text-cyan">Privacy</a>
+          <a href="#hero" className="transition hover:text-cyan">Back to top</a>
+        </div>
       </footer>
     </main>
   );

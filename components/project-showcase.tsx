@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Eye, Github, X } from "lucide-react";
@@ -23,6 +23,7 @@ export type Project = {
 export function ProjectShowcase({ projects }: { projects: Project[] }) {
   const [activeProject, setActiveProject] = useState<Project | null>(null);
   const [mounted, setMounted] = useState(false);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -32,11 +33,35 @@ export function ProjectShowcase({ projects }: { projects: Project[] }) {
     if (!activeProject) return;
 
     const previousOverflow = document.body.style.overflow;
+    const previousActiveElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     document.body.style.overflow = "hidden";
+    window.setTimeout(() => closeButtonRef.current?.focus(), 0);
 
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
         setActiveProject(null);
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+
+      const dialog = closeButtonRef.current?.closest("[role='dialog']");
+      if (!dialog) return;
+
+      const focusableElements = Array.from(
+        dialog.querySelectorAll<HTMLElement>("button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])"),
+      ).filter((element) => !element.hasAttribute("disabled"));
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements.at(-1);
+      if (!firstElement || !lastElement) return;
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
       }
     }
 
@@ -45,6 +70,7 @@ export function ProjectShowcase({ projects }: { projects: Project[] }) {
     return () => {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", onKeyDown);
+      previousActiveElement?.focus();
     };
   }, [activeProject]);
 
@@ -66,6 +92,8 @@ export function ProjectShowcase({ projects }: { projects: Project[] }) {
                       <img
                         src={project.images[0]}
                         alt={`${project.title} preview`}
+                        loading="lazy"
+                        decoding="async"
                         className="h-full w-full object-cover object-top transition duration-500 group-hover/preview:scale-[1.03]"
                       />
                       <div className="absolute inset-0 flex items-end justify-between bg-gradient-to-t from-black/72 via-black/10 to-transparent p-4 opacity-100">
@@ -159,6 +187,7 @@ export function ProjectShowcase({ projects }: { projects: Project[] }) {
                     onClick={(event) => event.stopPropagation()}
                   >
                     <button
+                      ref={closeButtonRef}
                       type="button"
                       onClick={() => setActiveProject(null)}
                       aria-label="Close preview"
@@ -181,6 +210,8 @@ export function ProjectShowcase({ projects }: { projects: Project[] }) {
                             <img
                               src={activeProject.images[0]}
                               alt={`${activeProject.title} full screenshot`}
+                              loading="lazy"
+                              decoding="async"
                               className="h-full w-full object-contain"
                             />
                           </div>
