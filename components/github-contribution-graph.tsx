@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { RefreshCw } from "lucide-react";
 
 type ContributionCell = {
   date: string;
@@ -103,14 +104,25 @@ function buildCalendar(counts: Map<string, { count: number; level: number }>) {
   return { weeks, monthLabels };
 }
 
-export function GitHubContributionGraph({ username = "Akash17-dev" }: { username?: string }) {
+export function GitHubContributionGraph({
+  username = "Akash17-dev",
+  reloadKey = 0,
+}: {
+  username?: string;
+  reloadKey?: number;
+}) {
   const [counts, setCounts] = useState<Map<string, { count: number; level: number }>>(new Map());
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [localReloadKey, setLocalReloadKey] = useState(0);
 
   useEffect(() => {
     let cancelled = false;
 
     async function loadContributions() {
+      setLoading(true);
+      setError("");
+
       try {
         const response = await fetch(`/api/github-contributions?username=${username}`, {
           cache: "no-store",
@@ -118,6 +130,9 @@ export function GitHubContributionGraph({ username = "Akash17-dev" }: { username
         const data = await response.json();
 
         if (!response.ok || !Array.isArray(data.contributions)) {
+          if (!cancelled) {
+            setError("Contribution graph could not sync.");
+          }
           return;
         }
 
@@ -128,6 +143,10 @@ export function GitHubContributionGraph({ username = "Akash17-dev" }: { username
 
         if (!cancelled) {
           setCounts(nextCounts);
+        }
+      } catch {
+        if (!cancelled) {
+          setError("Contribution graph could not sync.");
         }
       } finally {
         if (!cancelled) {
@@ -141,7 +160,7 @@ export function GitHubContributionGraph({ username = "Akash17-dev" }: { username
     return () => {
       cancelled = true;
     };
-  }, [username]);
+  }, [localReloadKey, reloadKey, username]);
 
   const { weeks, monthLabels } = useMemo(() => buildCalendar(counts), [counts]);
   const total = useMemo(() => Array.from(counts.values()).reduce((sum, value) => sum + value.count, 0), [counts]);
@@ -152,15 +171,29 @@ export function GitHubContributionGraph({ username = "Akash17-dev" }: { username
         <div>
           <h3 className="text-lg font-bold text-white">Contribution Activity</h3>
           <p className="text-sm leading-6 text-white/50">
-            {loading ? "Syncing public GitHub contributions..." : `${total}+ public activity signals in the last year`}
+            {loading
+              ? "Syncing public GitHub contributions..."
+              : error || `${total}+ public activity signals in the last year`}
           </p>
         </div>
-        <a
-          href={`https://github.com/${username}`}
-          className="inline-flex items-center text-sm font-semibold text-cyan transition hover:text-white"
-        >
-          View GitHub
-        </a>
+        <div className="flex items-center gap-4">
+          {error ? (
+            <button
+              type="button"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-coral transition hover:text-white"
+              onClick={() => setLocalReloadKey((key) => key + 1)}
+            >
+              Retry
+              <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />
+            </button>
+          ) : null}
+          <a
+            href={`https://github.com/${username}`}
+            className="inline-flex items-center text-sm font-semibold text-cyan transition hover:text-white"
+          >
+            View GitHub
+          </a>
+        </div>
       </div>
 
       <div className="overflow-x-auto rounded-2xl border border-white/10 bg-black/20 p-4 pb-3">

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { Github } from "lucide-react";
+import { Github, RefreshCw } from "lucide-react";
 import { AnimatedCounter } from "@/components/animated-counter";
 import { GitHubContributionGraph } from "@/components/github-contribution-graph";
 import { MotionDiv } from "@/components/motion";
@@ -49,11 +49,16 @@ export function GitHubDashboard({ username = "Akash17-dev" }: { username?: strin
   const [profile, setProfile] = useState<GitHubProfile>(fallbackProfile);
   const [contributions, setContributions] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [reloadKey, setReloadKey] = useState(0);
 
   useEffect(() => {
     let cancelled = false;
 
     async function loadGitHubData() {
+      setLoading(true);
+      setError("");
+
       try {
         const [profileResponse, contributionResponse] = await Promise.all([
           fetch(`/api/github-profile?username=${username}`, { cache: "no-store" }),
@@ -81,6 +86,13 @@ export function GitHubDashboard({ username = "Akash17-dev" }: { username?: strin
           const total = contributionData.contributions.reduce((sum: number, cell: ContributionCell) => sum + Number(cell.count || 0), 0);
           setContributions(total);
         }
+        if (!cancelled && (!profileResponse.ok || !contributionResponse.ok)) {
+          setError("Live GitHub data is temporarily unavailable. Showing cached portfolio defaults.");
+        }
+      } catch {
+        if (!cancelled) {
+          setError("Live GitHub data is temporarily unavailable. Showing cached portfolio defaults.");
+        }
       } finally {
         if (!cancelled) {
           setLoading(false);
@@ -93,7 +105,7 @@ export function GitHubDashboard({ username = "Akash17-dev" }: { username?: strin
     return () => {
       cancelled = true;
     };
-  }, [username]);
+  }, [reloadKey, username]);
 
   const metrics = useMemo(
     () => [
@@ -131,6 +143,20 @@ export function GitHubDashboard({ username = "Akash17-dev" }: { username?: strin
         </div>
       </div>
 
+      {error ? (
+        <div className="mt-5 flex flex-col gap-3 rounded-2xl border border-coral/30 bg-coral/10 px-4 py-3 text-sm text-coral sm:flex-row sm:items-center sm:justify-between">
+          <span>{error}</span>
+          <button
+            type="button"
+            className="inline-flex items-center gap-2 font-bold text-white transition hover:text-cyan"
+            onClick={() => setReloadKey((key) => key + 1)}
+          >
+            Retry
+            <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />
+          </button>
+        </div>
+      ) : null}
+
       <div className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
         {metrics.map(([label, value, description, showSuffix]) => (
           <div key={label} className="rounded-2xl border border-white/10 bg-black/15 p-4 transition duration-300 hover:border-cyan/30 hover:bg-white/[0.045]">
@@ -163,7 +189,7 @@ export function GitHubDashboard({ username = "Akash17-dev" }: { username?: strin
         ))}
       </div>
 
-      <GitHubContributionGraph username={username} />
+      <GitHubContributionGraph username={username} reloadKey={reloadKey} />
     </div>
   );
 }

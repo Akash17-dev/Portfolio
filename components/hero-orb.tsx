@@ -47,7 +47,7 @@ function LiquidSphere() {
 
 export default function HeroOrb() {
   return (
-    <div data-parallax className="absolute inset-0 z-10">
+    <div className="absolute inset-0 z-10">
       <Canvas
         camera={{ position: [0, 0, 6], fov: 42 }}
         dpr={[1, 1.6]}

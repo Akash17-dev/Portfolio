@@ -54,39 +54,44 @@ export async function GET(request: Request) {
   const url = new URL(request.url);
   const username = url.searchParams.get("username") || "Akash17-dev";
 
-  const [userResponse, reposResponse] = await Promise.all([
-    fetch(`https://api.github.com/users/${username}`, {
-      headers: githubHeaders(),
-      next: { revalidate: 3600 },
-    }),
-    fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`, {
-      headers: githubHeaders(),
-      next: { revalidate: 3600 },
-    }),
-  ]);
+  try {
+    const [userResponse, reposResponse] = await Promise.all([
+      fetch(`https://api.github.com/users/${username}`, {
+        headers: githubHeaders(),
+        next: { revalidate: 3600 },
+      }),
+      fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`, {
+        headers: githubHeaders(),
+        next: { revalidate: 3600 },
+      }),
+    ]);
 
-  if (!userResponse.ok || !reposResponse.ok) {
+    if (!userResponse.ok || !reposResponse.ok) {
+      return NextResponse.json({ error: "Unable to fetch GitHub profile data." }, { status: 502 });
+    }
+
+    const user = (await userResponse.json()) as GitHubUser;
+    const repos = (await reposResponse.json()) as GitHubRepo[];
+    const sourceRepos = repos.filter((repo) => !repo.fork);
+    const stars = sourceRepos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
+    const languages = normalizeLanguageStats(sourceRepos.length ? sourceRepos : repos);
+
+    return NextResponse.json(
+      {
+        repositories: user.public_repos,
+        followers: user.followers,
+        stars,
+        languages,
+        languageCount: languages.length,
+      },
+      {
+        headers: {
+          "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
+        },
+      },
+    );
+  } catch (error) {
+    console.error("GitHub profile error:", error);
     return NextResponse.json({ error: "Unable to fetch GitHub profile data." }, { status: 502 });
   }
-
-  const user = (await userResponse.json()) as GitHubUser;
-  const repos = (await reposResponse.json()) as GitHubRepo[];
-  const sourceRepos = repos.filter((repo) => !repo.fork);
-  const stars = sourceRepos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
-  const languages = normalizeLanguageStats(sourceRepos.length ? sourceRepos : repos);
-
-  return NextResponse.json(
-    {
-      repositories: user.public_repos,
-      followers: user.followers,
-      stars,
-      languages,
-      languageCount: languages.length,
-    },
-    {
-      headers: {
-        "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
-      },
-    },
-  );
 }

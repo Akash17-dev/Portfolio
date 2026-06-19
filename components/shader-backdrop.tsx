@@ -149,6 +149,7 @@ export function ShaderBackdrop({
     const pointerState = { x: 0.55, y: 0.52 };
     let frame = 0;
     let start = performance.now();
+    let visible = true;
 
     function resize() {
       const rect = canvasElement.getBoundingClientRect();
@@ -165,6 +166,11 @@ export function ShaderBackdrop({
     }
 
     function render(now: number) {
+      if (!visible || document.hidden) {
+        frame = 0;
+        return;
+      }
+
       gl.clearColor(0, 0, 0, 0);
       gl.clear(gl.COLOR_BUFFER_BIT);
       gl.useProgram(program);
@@ -181,17 +187,44 @@ export function ShaderBackdrop({
       }
     }
 
-    resize();
-    window.addEventListener("resize", resize);
-    canvasElement.addEventListener("pointermove", onPointerMove, { passive: true });
-    frame = window.requestAnimationFrame((now) => {
-      start = now;
-      render(now);
+    function startRendering() {
+      if (reducedMotion || frame || !visible || document.hidden) return;
+      frame = window.requestAnimationFrame(render);
+    }
+
+    function syncVisibility() {
+      if (document.hidden && frame) {
+        window.cancelAnimationFrame(frame);
+        frame = 0;
+        return;
+      }
+
+      startRendering();
+    }
+
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      if (!visible && frame) {
+        window.cancelAnimationFrame(frame);
+        frame = 0;
+      } else {
+        startRendering();
+      }
     });
 
+    resize();
+    window.addEventListener("resize", resize);
+    document.addEventListener("visibilitychange", syncVisibility);
+    canvasElement.addEventListener("pointermove", onPointerMove, { passive: true });
+    start = performance.now();
+    observer.observe(canvasElement);
+    render(start);
+
     return () => {
-      window.cancelAnimationFrame(frame);
+      if (frame) window.cancelAnimationFrame(frame);
+      observer.disconnect();
       window.removeEventListener("resize", resize);
+      document.removeEventListener("visibilitychange", syncVisibility);
       canvasElement.removeEventListener("pointermove", onPointerMove);
       gl.deleteBuffer(buffer);
       gl.deleteProgram(program);

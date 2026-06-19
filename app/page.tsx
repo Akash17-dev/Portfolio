@@ -22,8 +22,8 @@ import { ContactForm } from "@/components/contact-form";
 import { MagneticButton } from "@/components/magnetic-button";
 import { MotionDiv, MotionSection } from "@/components/motion";
 import { MouseGlow } from "@/components/mouse-glow";
-import { ScrollAnimations } from "@/components/scroll-animations";
 import { SectionHeading } from "@/components/section-heading";
+import { SkillsAccordion } from "@/components/skills-accordion";
 import { TiltCard } from "@/components/tilt-card";
 import { ProjectShowcase, type Project } from "@/components/project-showcase";
 import { GitHubDashboard } from "@/components/github-dashboard";
@@ -250,7 +250,6 @@ const ventures = [
 export default function Home() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-ink text-white">
-      <ScrollAnimations />
       <MouseGlow />
       <AshClouds />
       <AuroraBackground />
@@ -313,7 +312,7 @@ export default function Home() {
         </div>
       </section>
 
-      <MotionSection id="about" className="section-shell" data-reveal>
+      <MotionSection id="about" className="section-shell">
         <SectionHeading eyebrow="About" title="Intelligent products with a founder's pace." />
         <div className="glass-panel overflow-hidden rounded-[2rem] p-6 sm:p-10 lg:p-12">
           <p className="max-w-4xl text-2xl font-semibold leading-tight text-white sm:text-4xl">
@@ -351,7 +350,7 @@ export default function Home() {
         </div>
       </MotionSection>
 
-      <MotionSection id="skills" className="section-shell !py-16 sm:!py-24" data-reveal>
+      <MotionSection id="skills" className="section-shell !py-16 sm:!py-24">
         <div className="relative overflow-hidden border-y border-white/10 bg-white/[0.025] py-10 sm:py-12">
           <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:48px_48px] opacity-40" />
           <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan/50 to-transparent" />
@@ -379,73 +378,22 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="mt-10 overflow-hidden rounded-[1.5rem] border border-white/10 bg-black/25 shadow-glass backdrop-blur">
-              <div className="hidden grid-cols-[0.5fr_1.1fr_1.6fr_1.3fr] border-b border-white/10 px-5 py-3 text-[11px] font-bold uppercase tracking-[0.2em] text-white/[0.38] md:grid">
-                <span>Depth</span>
-                <span>Capability</span>
-                <span>Focus</span>
-                <span>Tools</span>
-              </div>
-
-              {skills.map((skill, index) => (
-                <MotionDiv
-                  key={skill.title}
-                  className="group grid gap-4 border-b border-white/10 px-5 py-5 transition duration-300 last:border-b-0 hover:bg-white/[0.045] md:grid-cols-[0.5fr_1.1fr_1.6fr_1.3fr] md:items-center"
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-80px" }}
-                  transition={{ delay: index * 0.05 }}
-                >
-                  <div>
-                    <div className="mb-2 flex items-center justify-between text-xs font-bold text-white/60 md:block">
-                      <span className="md:hidden">Depth</span>
-                      <span>{skill.level}%</span>
-                    </div>
-                    <div className="h-1.5 overflow-hidden rounded-full bg-white/10">
-                      <MotionDiv
-                        className="h-full rounded-full bg-cyan"
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, ease: "easeOut", delay: index * 0.05 }}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3">
-                    <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-white/10 bg-white/[0.055] text-cyan transition group-hover:border-cyan/30 group-hover:bg-cyan/10">
-                      <skill.icon className="h-5 w-5" />
-                    </div>
-                    <h3 className="text-lg font-black tracking-[-0.02em] text-white">{skill.title}</h3>
-                  </div>
-
-                  <p className="text-sm leading-6 text-white/[0.58]">{skill.focus}</p>
-
-                  <div className="flex flex-wrap gap-2">
-                    {skill.items.slice(0, 5).map((item) => (
-                      <span key={item} className="rounded-full border border-white/10 bg-white/[0.045] px-3 py-1.5 text-xs text-white/[0.68]">
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                </MotionDiv>
-              ))}
-            </div>
+            <SkillsAccordion skills={skills.map(({ icon, tone, proof, ...skill }) => skill)} />
           </div>
         </div>
       </MotionSection>
 
-      <MotionSection id="projects" className="section-shell" data-reveal>
+      <MotionSection id="projects" className="section-shell">
         <SectionHeading eyebrow="Featured Projects" title="Products shaped like real startups." />
         <ProjectShowcase projects={projects} />
       </MotionSection>
 
-      <MotionSection id="github" className="section-shell !py-16 sm:!py-24" data-reveal>
+      <MotionSection id="github" className="section-shell !py-16 sm:!py-24">
         <SectionHeading eyebrow="GitHub Dashboard" title="Open-source activity with product discipline." />
         <GitHubDashboard username="Akash17-dev" />
       </MotionSection>
 
-      <MotionSection id="experience" className="section-shell" data-reveal>
+      <MotionSection id="experience" className="section-shell">
         <SectionHeading eyebrow="Experience Timeline" title="From learning curve to product velocity." />
         <div className="relative mx-auto max-w-4xl">
           <div className="absolute left-5 top-0 h-full w-px bg-gradient-to-b from-cyan via-violet to-transparent sm:left-1/2" />
@@ -482,7 +430,7 @@ export default function Home() {
         </div>
       </MotionSection>
 
-      <MotionSection id="ventures" className="section-shell" data-reveal>
+      <MotionSection id="ventures" className="section-shell">
         <SectionHeading eyebrow="Startup Ventures" title="Ambitious concepts ready for productization." />
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {ventures.map((venture, index) => (
@@ -501,7 +449,7 @@ export default function Home() {
         </div>
       </MotionSection>
 
-      <MotionSection id="contact" className="section-shell pb-14" data-reveal>
+      <MotionSection id="contact" className="section-shell pb-14">
         <SectionHeading eyebrow="Contact" title="Let's build something unusually good." />
         <div className="glass-panel grid gap-8 rounded-[2rem] p-6 sm:p-8 lg:grid-cols-[0.85fr_1.15fr]">
           <div>
