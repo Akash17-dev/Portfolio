@@ -10,9 +10,6 @@ Available at [https://portfolio-pi-livid-lni8rjwhws.vercel.app/](https://portfol
 
 ## Preview
 
-### Loading Page
-
-<img src="./public/readme-assets/loading-page.png" alt="Akash Aakula portfolio loading page" width="900" />
 
 
 
